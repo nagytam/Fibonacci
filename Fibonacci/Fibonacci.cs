@@ -4,7 +4,7 @@ using BenchmarkDotNet.Attributes;
 [MemoryDiagnoser]
 public class Fibonacci
 {
-    public long N = 40;
+    public long N = 100;
     public long FibonacciRecursive(long n)
     {
         switch (n)
