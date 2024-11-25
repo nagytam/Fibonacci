@@ -2,6 +2,7 @@
 
 var summary = BenchmarkRunner.Run<Fibonacci>();
 
-//Fibonacci.FibonacciRecursiveBenchmark();
-//Fibonacci.FibonacciWithoutRecursionBenchmark();
-//Fibonacci.FibonacciWithYieldBenchmark(); 
+// var fibonacci = new Fibonacci();
+// fibonacci.FibonacciRecursiveBenchmark();
+// fibonacci.FibonacciWithoutRecursionBenchmark();
+// fibonacci.FibonacciWithYieldBenchmark(); 

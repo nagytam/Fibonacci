@@ -1,5 +1,7 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.Text;
+using BenchmarkDotNet.Attributes;
 
+[MemoryDiagnoser]
 public class Fibonacci
 {
     public long N = 40;
@@ -57,29 +59,38 @@ public class Fibonacci
     [Benchmark]
     public void FibonacciRecursiveBenchmark()
     {
+        StringBuilder sb = new();
         for (int i = 0; i < N; i++)
         {
-            Console.WriteLine(FibonacciRecursive(i));
+            sb.Append(FibonacciRecursive(i).ToString());
+            sb.Append(',');
         }
+        Console.WriteLine(sb);
     }
 
     [Benchmark]
     public void FibonacciWithoutRecursionBenchmark()
     {
+        StringBuilder sb = new();
         for (int i = 0; i < N; i++)
         {
-            Console.WriteLine(FibonacciWithoutRecursion(i));
+            sb.Append((FibonacciWithoutRecursion(i).ToString()));
+            sb.Append(',');
         }
+        Console.WriteLine(sb);
     }
 
     [Benchmark(Baseline = true)]
     public void FibonacciWithYieldBenchmark()
     {
+        StringBuilder sb = new();
         using var enumerator = FibonacciWithYield().GetEnumerator();
         for (int i = 0; i < N; i++)
         {
             enumerator.MoveNext();
-            Console.WriteLine(enumerator.Current);
+            sb.Append(enumerator.Current.ToString());
+            sb.Append(',');
         }
+        Console.WriteLine(sb);
     }
 }
