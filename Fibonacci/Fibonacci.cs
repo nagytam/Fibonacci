@@ -2,6 +2,7 @@
 
 public class Fibonacci
 {
+    public long N = 50;
     public long FibonacciRecursive(long n)
     {
         switch (n)
@@ -56,7 +57,7 @@ public class Fibonacci
     [Benchmark]
     public void FibonacciRecursiveBenchmark()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < N; i++)
         {
             Console.WriteLine(FibonacciRecursive(i));
         }
@@ -65,7 +66,7 @@ public class Fibonacci
     [Benchmark]
     public void FibonacciWithoutRecursionBenchmark()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < N; i++)
         {
             Console.WriteLine(FibonacciWithoutRecursion(i));
         }
@@ -74,8 +75,8 @@ public class Fibonacci
     [Benchmark]
     public void FibonacciWithYieldBenchmark()
     {
-        var enumerator = FibonacciWithYield().GetEnumerator();
-        for (int i = 0; i < 20; i++)
+        using var enumerator = FibonacciWithYield().GetEnumerator();
+        for (int i = 0; i < N; i++)
         {
             enumerator.MoveNext();
             Console.WriteLine(enumerator.Current);
