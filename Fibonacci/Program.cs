@@ -33,5 +33,25 @@ long Fibonacci2(long n)
     }
 }
 
-Console.WriteLine(Fibonacci(50));
-Console.WriteLine(Fibonacci2(50));
+IEnumerable<long> Fibonacci3()
+{
+    yield return 0;
+
+    long last2 = 0;
+    long last1 = 1;
+    while (true)
+    {
+        var sum = last2 + last1;
+        last2 = last1;
+        last1 = sum;
+        yield return sum;
+    }
+}
+
+//Console.WriteLine(Fibonacci(50));
+//Console.WriteLine(Fibonacci2(50));
+
+foreach (var n in Fibonacci3())
+{
+    Console.WriteLine(n);
+}
