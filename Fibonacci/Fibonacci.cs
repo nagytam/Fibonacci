@@ -2,10 +2,12 @@
 using BenchmarkDotNet.Attributes;
 
 [MemoryDiagnoser]
+[ShortRunJob]
 public class Fibonacci
 {
-    public long N = 100;
-    public long FibonacciRecursive(long n)
+    public const long N = 45;
+
+    public static long FibonacciRecursive(long n)
     {
         switch (n)
         {
@@ -60,24 +62,24 @@ public class Fibonacci
     public void FibonacciRecursiveBenchmark()
     {
         StringBuilder sb = new();
-        for (int i = 0; i < N; i++)
+        for (var i = 0; i < N; i++)
         {
-            sb.Append(FibonacciRecursive(i).ToString());
+            sb.Append(FibonacciRecursive(i));
             sb.Append(',');
         }
-        Console.WriteLine(sb);
+        //Console.WriteLine(sb);
     }
 
     [Benchmark]
     public void FibonacciWithoutRecursionBenchmark()
     {
         StringBuilder sb = new();
-        for (int i = 0; i < N; i++)
+        for (var i = 0; i < N; i++)
         {
             sb.Append((FibonacciWithoutRecursion(i).ToString()));
             sb.Append(',');
         }
-        Console.WriteLine(sb);
+        //Console.WriteLine(sb);
     }
 
     [Benchmark(Baseline = true)]
@@ -85,12 +87,12 @@ public class Fibonacci
     {
         StringBuilder sb = new();
         using var enumerator = FibonacciWithYield().GetEnumerator();
-        for (int i = 0; i < N; i++)
+        for (var i = 0; i < N; i++)
         {
             enumerator.MoveNext();
-            sb.Append(enumerator.Current.ToString());
+            sb.Append(enumerator.Current);
             sb.Append(',');
         }
-        Console.WriteLine(sb);
+        //Console.WriteLine(sb);
     }
 }
