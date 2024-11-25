@@ -2,7 +2,7 @@
 
 public class Fibonacci
 {
-    public long N = 30;
+    public long N = 40;
     public long FibonacciRecursive(long n)
     {
         switch (n)
@@ -72,7 +72,7 @@ public class Fibonacci
         }
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     public void FibonacciWithYieldBenchmark()
     {
         using var enumerator = FibonacciWithYield().GetEnumerator();
