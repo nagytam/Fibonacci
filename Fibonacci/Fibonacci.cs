@@ -2,7 +2,7 @@
 
 public class Fibonacci
 {
-    public long N = 50;
+    public long N = 30;
     public long FibonacciRecursive(long n)
     {
         switch (n)
